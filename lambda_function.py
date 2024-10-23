@@ -37,7 +37,9 @@ def lambda_handler(event, context):
             Text=text,
             VoiceId='Salli'  # You can choose a different voice IDs too
         )
+
         audio_data = response['AudioStream'].read()
+        
     except Exception as e:
         print(str(e))
         return {
