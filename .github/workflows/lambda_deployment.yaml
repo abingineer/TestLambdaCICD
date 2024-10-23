@@ -1,0 +1,31 @@
+name: Deploy lambda function
+
+on:
+   push:
+      branches:
+        - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Zip Tool
+        uses: montudor/actions-zip@v1
+      - name: Create Zip File for Lambda Function
+        run: zip -r code.zip
+      - name: AWS CLI v2
+        uses: imehedi/actions-awscli-v2@latest
+        with:
+          args: "Lambda update-function-code \
+            --function-name arn:aws:lambda:eu-west-1:352854872264:function:text2talkFunction \
+            --zip-file fileb://code.zip"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID}}
+          AWS_SECRET_ACESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          AWS_DEFAULT_REGION: "eu-west-1"
+               
+        
+ 
+ 
