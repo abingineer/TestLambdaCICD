@@ -35,7 +35,7 @@ def lambda_handler(event, context):
         response = polly_client.synthesize_speech(
             OutputFormat='mp3',
             Text=text,
-            VoiceId='Salli'  # You can choose a different voice IDs too
+            VoiceId='Gregory'  # You can choose a different voice IDs too
         )
         audio_data = response['AudioStream'].read()
     except Exception as e:
