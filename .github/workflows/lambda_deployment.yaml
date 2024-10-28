@@ -15,7 +15,7 @@ jobs:
         uses: montudor/action-zip@v1
     
   Deploy:
-    needs: [create-zip-file]
+    needs: create-zip-file
     runs-on: ubuntu-latest
 
     steps:
